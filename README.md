@@ -43,17 +43,17 @@
 ```json
 {
   "omada": {
-    "base_url": "",# Sur OMADA, se trouve dans Global View -> Settings -> Platform Intergation -> Symbole oeil
-    "client_id": "",# Sur OMADA, se trouve dans Global View -> Settings -> Platform Intergation
-    "omadac_id": "",# Sur OMADA, se trouve dans Global View -> Settings -> Platform Intergation -> Symbole oeil
-    "client_secret": "",# Sur OMADA, se trouve dans Global View -> Settings -> Platform Intergation
-    "gateway_mac": ""# Sur OMADA, l'adresse MAC du routeur, se trouve dans Global View -> Devices
+    "base_url": "", # Sur OMADA, se trouve dans Global View -> Settings -> Platform Intergation -> Symbole oeil
+    "client_id": "", # Sur OMADA, se trouve dans Global View -> Settings -> Platform Intergation
+    "omadac_id": "", # Sur OMADA, se trouve dans Global View -> Settings -> Platform Intergation -> Symbole oeil
+    "client_secret": "", # Sur OMADA, se trouve dans Global View -> Settings -> Platform Intergation
+    "gateway_mac": "" # Sur OMADA, l'adresse MAC du routeur, se trouve dans Global View -> Devices
   },
   "vpn": {
     "definitions": [
       {
-        "domaine": "",# Se trouve dans OVH
-        "vpn_name": ""# Sur OMADA, se trouve dans $NOMDUSITE -> Settings -> VPN
+        "domaine": "", # Se trouve dans OVH
+        "vpn_name": "" # Sur OMADA, se trouve dans $NOMDUSITE -> Settings -> VPN
       }
     ]
   }
