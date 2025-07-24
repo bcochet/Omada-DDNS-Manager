@@ -32,8 +32,6 @@
 - Contrôleur Omada avec un compte admin
 - Permettre les communications avec les APIs. Pour ça, aller sur le **contrôleur Omada**, dans **Settings** puis **Plateform Integration**. Ensuite cliquez sur **Add New App**, mettez le en mode **Client** et complétez avec le **bon rôle** et le **bon site** :
 
-![alt text](image.png)
-
 # Étapes :
 
 #### 1. Sur la VM du client, copier le dossier `DDNS\VM` dans le dossier partagé.
