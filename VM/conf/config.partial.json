@@ -1,0 +1,17 @@
+{
+  "omada": {
+    "base_url": "YOUR_BASE_URL",
+    "client_id": "YOUR_CLIENT_ID",
+    "client_secret": "YOUR_SECRET",
+    "omadac_id": "YOUR_OMADAC_ID",
+    "gateway_mac": "AA:BB:CC:DD:EE:FF"
+  },
+  "vpn": {
+    "definitions": [
+      {
+        "domaine": "vpn1.example.com",
+        "vpn_name": "MyVPN-1"
+      }
+    ]
+  }
+}
