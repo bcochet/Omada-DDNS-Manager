@@ -1,9 +1,3 @@
-###############################
-## Script Update_DDNS_OVH.ps1
-## Auth : The Nerd Cat
-## Updated by GPT
-################################
-
 $WORK_DIR = $PSScriptRoot
 $configFile = "$WORK_DIR\conf\ovh_ddns_config.txt"
 $ipStateFile = "$WORK_DIR\ip_state.json"
@@ -22,7 +16,8 @@ try {
     $webclient = New-Object System.Net.WebClient
     $WANIP = $webclient.DownloadString($url).Trim()
     Write-Host "[INFO] IP publique détectée : $WANIP"
-} catch {
+}
+catch {
     Write-Host "[ERROR] Impossible de récupérer l'IP publique : $_"
     exit 1
 }
@@ -35,7 +30,8 @@ if (Test-Path $ipStateFile) {
         $firstDomain = ($json.PSObject.Properties | Select-Object -First 1).Name
         $oldIP = $json.$firstDomain.ip
         Write-Host "[INFO] Ancienne IP : $oldIP"
-    } catch {
+    }
+    catch {
         Write-Host "[WARN] Fichier d'état invalide, IP précédente ignorée."
     }
 }
@@ -46,9 +42,11 @@ if ($oldIP -ne $WANIP -and $oldIP) {
     $logEntry = "[$timestamp] $oldIP -> $WANIP"
     Add-Content -Path $logFile -Value $logEntry
     Write-Host "[INFO] Changement d'IP détecté. Log : $logEntry"
-} elseif (-not $oldIP) {
+}
+elseif (-not $oldIP) {
     Write-Host "[INFO] Aucune IP précédente trouvée, aucune comparaison faite."
-} else {
+}
+else {
     Write-Host "[INFO] IP inchangée, aucun log écrit."
 }
 
@@ -78,7 +76,8 @@ Get-Content $configFile | ForEach-Object {
     try {
         $result = $wc.DownloadString($majurl)
         Write-Host "[INFO] OVH response for ${URL_OVH}: $result"
-    } catch {
+    }
+    catch {
         Write-Host "[ERROR] Erreur OVH pour ${URL_OVH}: $_"
     }
 
@@ -90,7 +89,8 @@ $utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $false
 try {
     [System.IO.File]::WriteAllText($ipStateFile, ($state | ConvertTo-Json -Depth 2), $utf8NoBomEncoding)
     Write-Host "[INFO] Écrit dans $ipStateFile"
-} catch {
+}
+catch {
     Write-Host "[ERROR] Impossible d'écrire le fichier $ipStateFile : $_"
     exit 1
 }
