@@ -3,7 +3,7 @@
 
 # Prérequis :
 
-- Créer un dossier par client, et y mettre le contenu nécéssaire.
+- Créer un dossier par client, et y mettre le contenu nécessaire.
 
   - Sur l'HyperV
 
@@ -30,7 +30,7 @@
 - Créer un dossier partagé sur la VM avec un utilisateur qui aura accès à ce dossier partagé.
 - Domaine chez OVH
 - Contrôleur Omada avec un compte admin
-- Permettre les communications avec les APIs. Pour ça, aller sur le **contrôleur Omada**, dans **Settings** puis **Plateform Integration**. Ensuite cliquez sur **Add New App**, mettez le en mode **Client** et complétez avec le **bon rôle** et le **bon site** :
+- Permettre les communications avec les APIs. Pour ça, aller sur le **contrôleur Omada**, dans **Settings** puis **Platform Integration**. Ensuite cliquez sur **Add New App**, mettez-le en mode **Client** et complétez avec le **bon rôle** et le **bon site** :
 
 # Étapes :
 
@@ -43,10 +43,10 @@
 ```json
 {
   "omada": {
-    "base_url": "",# Sur OMADA, se trouve dans Global View -> Settings -> Plateform Intergation -> Symbole oeil
-    "client_id": "",# Sur OMADA, se trouve dans Global View -> Settings -> Plateform Intergation
-    "omadac_id": "",# Sur OMADA, se trouve dans Global View -> Settings -> Plateform Intergation -> Symbole oeil
-    "client_secret": "",# Sur OMADA, se trouve dans Global View -> Settings -> Plateform Intergation
+    "base_url": "",# Sur OMADA, se trouve dans Global View -> Settings -> Platform Intergation -> Symbole oeil
+    "client_id": "",# Sur OMADA, se trouve dans Global View -> Settings -> Platform Intergation
+    "omadac_id": "",# Sur OMADA, se trouve dans Global View -> Settings -> Platform Intergation -> Symbole oeil
+    "client_secret": "",# Sur OMADA, se trouve dans Global View -> Settings -> Platform Intergation
     "gateway_mac": ""# Sur OMADA, l'adresse MAC du routeur, se trouve dans Global View -> Devices
   },
   "vpn": {
@@ -67,11 +67,11 @@ Pensez à supprimer `config.partial.json` et `config.ps1` de votre `/DDNS/VM` a
 #### 5. Vérifier les informations du fichier `VM/conf/config.json` (voir ci-dessous).
 
 > [!WARNING]
-> Afin que les WAN ne sois pas changés aléatoirement, il faut mettre un ordre de priorité. Cela se fait grâce à `"priority": 1-2-3-etc,` avec 1 étant le wan le plus prioritaire.
+> Afin que les WAN ne soient pas changés aléatoirement, il faut mettre un ordre de priorité. Cela se fait grâce à `"priority": 1-2-3-etc,` avec 1 étant le wan le plus prioritaire.
 
 Exemple du fichier `config.json` :
 
-```python
+```json
 {
     "vpn":  {
         "definitions":  [
@@ -122,7 +122,7 @@ Exemple du fichier `config.json` :
 
 #### 6. Mettre les identifiants OVH dans `DDNS/VM/conf/ovh_ddns_config.txt` puis exécuter le script `VM/dynDNSovh.ps1` sur la VM (en faire une tâche planifiée).
 
-Ce scirpt permettra de mettre à jour votre enregistrement DynDNS sur OVH automatiquement lorsque l'IP publique va changer.
+Ce script permettra de mettre à jour votre enregistrement DynDNS sur OVH automatiquement lorsque l'IP publique va changer.
 
 #### 7. Indiquer le chemin vers le fichier `ip_state.json` se trouvant dans le dossier partagé sur la VM, dans le script `ddns_dossier_partage.ps1`.
 
@@ -137,4 +137,4 @@ $motDePasse = "PASSWORD_USER_SHARED"
 
 #### 8. Exécuter le script `ddns_dossier_partage.ps1` (en faire une tâche planifiée).
 
-Ce scirpt va permettre la mise à jour des WANs sur OMADA automatiquement. Le changement d'IP détecté par `dynDNSovh.ps1`, va mettre à jour l'IP contenu dans le fichier `ip_state.json` et la comparer avec celle contenu dans `ip_state_old.json`. Lorsque l'ip est différente, il va la comparer avec les IPs contenu dans le fichier `config.json` et mettre à jour le WAN.
+Ce script va permettre la mise à jour des WANs sur OMADA automatiquement. Le changement d'IP détecté par `dynDNSovh.ps1`, va mettre à jour l'IP contenue dans le fichier `ip_state.json` et la comparer avec celle contenue dans `ip_state_old.json`. Lorsque l'ip est différente, il va la comparer avec les IPs présentes dans le fichier `config.json` et mettre à jour le WAN.
